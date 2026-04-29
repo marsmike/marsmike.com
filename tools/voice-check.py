@@ -90,6 +90,20 @@ KNOWN_DE_ANGLICISMS: set[str] = {
     "Vercel", "Linear", "Notion", "Stripe", "Spotify",
     "Slow", "Polish",
     "extend", "compile", "deck",
+    # Feinschliff catalog — layout names that appear outside italic markers in prose.
+    "KPI-Grid", "KPI", "Waterfall", "Stacked-Bar", "Stacked-Bar-Chart",
+    "Scorecard", "Pyramid", "Bar Chart", "Line Chart", "Process Flow",
+    "Action Title", "Executive Summary", "Key Takeaways",
+    "Column", "2-Column", "3-Column", "4-Column",
+    "Vertical", "Horizontal",
+    "Heading", "Counter", "Slot", "Slots", "Slot-Schema",
+    # German compounds coined for the post / Feinschliff domain.
+    "Exec-Publikum", "Exec-Zielgruppe",
+    "SCQA", "SCQA-Narrativ",
+    "Sektions-Eröffner", "Sektions-Öffner", "End-Folie",
+    "Vier-Slot-Layout", "Sieben-Bullets",
+    "Anker-Totalen", "Finanz-Brücken",
+    "Matching-Engine", "Token-System",
     # Casual-register verbs Mike's voice accepts (mirroring EN colloquialisms).
     # LT flags these as "Umgangssprache"; Mike's voice spec tolerates the casual form
     # when the EN sibling is also casual ("drop one in, get X out" → "reinwerfen, X rauskriegen").
@@ -158,7 +172,40 @@ def is_de_false_positive(match: dict, body: str, flagged: str) -> bool:
     if flagged == "Feinschliff erscheint":
         return True
 
+    # Markdown italic spans (*…*) wrap technical names — engineering jargon,
+    # plugin commands, defect classes, layout names, vault concepts. Anything
+    # whose offset falls inside an italic span is intentionally a term-of-art.
+    if any(s < offset < e for s, e in _md_italic_spans(body)):
+        return True
+
+    # Code spans (`…`) wrap CLI commands, JSON keys, file paths. LT can't see
+    # the formatting; suppress noise inside them.
+    if any(s < offset < e for s, e in _md_code_spans(body)):
+        return True
+
+    # LT misfires on capitalisation of words that follow a markdown bold-with-period
+    # sentence header like `**Section.** Word ...` — `Word` IS a sentence start, but
+    # LT can't parse the markdown boundary. Detect by `**.` within 8 chars before.
+    if match.get("rule", {}).get("category", {}).get("id") == "CASING":
+        before = body[max(0, offset - 8) : offset]
+        if "**" in before and "." in before:
+            return True
+
     return False
+
+
+def _md_italic_spans(body: str) -> list[tuple[int, int]]:
+    """Return list of (start, end) offsets covering markdown italic spans `*…*`.
+    Skips `**` (bold) by requiring single asterisk runs."""
+    spans = []
+    for m in re.finditer(r'(?<!\*)\*(?!\*)([^*\n]+?)(?<!\*)\*(?!\*)', body):
+        spans.append((m.start(), m.end()))
+    return spans
+
+
+def _md_code_spans(body: str) -> list[tuple[int, int]]:
+    """Return list of (start, end) offsets covering markdown inline code `\`…\``."""
+    return [(m.start(), m.end()) for m in re.finditer(r'`[^`\n]+`', body)]
 
 
 def lt_check_de(body: str) -> tuple[list[dict], str | None]:
