@@ -1,0 +1,47 @@
+---
+// Tiny island. No props.
+---
+
+<button
+  id="theme-toggle"
+  type="button"
+  aria-label="Toggle theme"
+  class="text-[var(--color-muted)] hover:text-[var(--color-text)] transition-colors"
+>
+  <span class="sr-only">Theme</span>
+  <span aria-hidden="true" data-theme-icon>◐</span>
+</button>
+
+<script is:inline>
+  (() => {
+    const btn = document.getElementById('theme-toggle');
+    if (!btn) return;
+    const icon = btn.querySelector('[data-theme-icon]');
+
+    const apply = (mode) => {
+      const root = document.documentElement;
+      if (mode === 'system') {
+        const sys = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        root.classList.toggle('dark', sys === 'dark');
+      } else {
+        root.classList.toggle('dark', mode === 'dark');
+      }
+      icon.textContent = mode === 'system' ? '◐' : mode === 'dark' ? '●' : '○';
+      btn.setAttribute('title', `Theme: ${mode}`);
+    };
+
+    let mode = localStorage.getItem('theme') || 'system';
+    apply(mode);
+
+    btn.addEventListener('click', () => {
+      mode = mode === 'system' ? 'light' : mode === 'light' ? 'dark' : 'system';
+      if (mode === 'system') localStorage.removeItem('theme');
+      else localStorage.setItem('theme', mode);
+      apply(mode);
+    });
+
+    matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+      if ((localStorage.getItem('theme') || 'system') === 'system') apply('system');
+    });
+  })();
+</script>
