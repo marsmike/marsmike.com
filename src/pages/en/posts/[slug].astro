@@ -1,0 +1,43 @@
+---
+import { getCollection } from 'astro:content';
+import PostLayout from '~/layouts/PostLayout.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts', ({ data }) => data.lang === 'en' && data.status === 'live');
+  const sorted = posts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+  return sorted.map((post, i) => ({
+    params: { slug: post.slug.replace(/^en\//, '') },
+    props: {
+      post,
+      prev: sorted[i + 1],
+      next: sorted[i - 1],
+    },
+  }));
+}
+
+const { post, prev, next } = Astro.props;
+const { Content } = await post.render();
+
+const dePosts = post.data.translation_of
+  ? await getCollection('posts', ({ data }) => data.lang === 'de' && data.status === 'live')
+  : [];
+const sibling = dePosts.find(p => p.slug.replace(/^de\//, '') === post.data.translation_of);
+const siblingPath = sibling ? `/posts/${sibling.slug.replace(/^de\//, '')}/` : undefined;
+
+const slugBare = (s: string) => s.replace(/^en\//, '');
+---
+
+<PostLayout
+  title={post.data.title}
+  summary={post.data.summary}
+  date={post.data.date}
+  lang="en"
+  linkedinUrl={post.data.linkedin_url}
+  codeUrl={post.data.code_url}
+  artifacts={post.data.artifacts}
+  siblingPath={siblingPath}
+  prev={prev ? { href: `/en/posts/${slugBare(prev.slug)}/`, title: prev.data.title } : undefined}
+  next={next ? { href: `/en/posts/${slugBare(next.slug)}/`, title: next.data.title } : undefined}
+>
+  <Content />
+</PostLayout>
