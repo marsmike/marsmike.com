@@ -1,7 +1,7 @@
 ---
 title: "Feinschliff: a typed component library for LLM-generated decks"
 summary: "Feinschliff lands today. ~36 typed layouts, concept-to-component matching, brand-pluggable design system. The plugin behind every deck I ship."
-date: 2026-04-29
+date: 2026-04-29T22:00:00+02:00
 lang: en
 status: live
 tags: ["agentic-toolkit", "feinschliff", "claude-code", "powerpoint", "design-systems"]

@@ -1,7 +1,7 @@
 ---
 title: "My agentic toolkit is now open source"
 summary: "github.com/marsmike/agentic-toolkit is public today. Plugins ship one at a time, not in a single dump — in the order I'd hand them to a colleague."
-date: 2026-04-29
+date: 2026-04-29T21:00:00+02:00
 lang: en
 status: live
 tags: ["agentic-toolkit", "claude-code", "oss"]
