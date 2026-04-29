@@ -9,8 +9,8 @@ const posts = defineCollection({
     lang: z.enum(['de', 'en']),
     status: z.enum(['draft', 'live']).default('live'),
     tags: z.array(z.string()).default([]),
-    linkedin_url: z.string().url().optional(),
-    code_url: z.string().url().optional(),
+    linkedin_url: z.preprocess((v) => v === '' ? undefined : v, z.string().url().optional()),
+    code_url: z.preprocess((v) => v === '' ? undefined : v, z.string().url().optional()),
     translation_of: z.string().optional(),
     artifacts: z.array(z.object({
       label: z.string(),
