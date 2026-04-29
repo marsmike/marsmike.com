@@ -1,0 +1,22 @@
+---
+title: "Mein Agentic Toolkit ist jetzt open source"
+summary: "github.com/marsmike/agentic-toolkit ist seit heute öffentlich. Plugins erscheinen einzeln, nicht alle auf einmal - in der Reihenfolge, in der ich sie einem Kollegen geben würde."
+date: 2026-04-29
+lang: de
+status: live
+tags: ["agentic-toolkit", "claude-code", "oss"]
+code_url: "https://github.com/marsmike/agentic-toolkit"
+translation_of: "agentic-toolkit-open-sourced"
+---
+
+Die meisten Plugin-Marketplaces werfen alles auf einmal raus und überlassen dem Publikum die Sortierarbeit. Dieser nicht. github.com/marsmike/agentic-toolkit ist seit heute öffentlich, und die Plugins erscheinen einzeln, in der Reihenfolge, in der ich sie einem Kollegen geben würde.
+
+Was heute online steht, ist ein Gerüst: ein Marketplace-Manifest, eine Lizenz (MIT), eine Mitwirkungs-Vereinbarung (DCO-Sign-off) und eine Roadmap mit einem Satz: "Nächstes Plugin landet in Kürze." Auf der privaten Seite existieren einundzwanzig Plugins. Sie sind im Alltag entstanden und im Alltag erprobt - Recherche, Wissensmanagement, Deck-Produktion, Video-Pipelines, Homelab-Steuerung, Social Amplification. Sie kommen einzeln hier an, jedes als eigenes Lehrartefakt, jedes in der Form, die es verdient.
+
+Big-Bang-Launches optimieren auf GitHub-Sterne am Launch-Tag. Sie optimieren nicht auf die Entwicklerin, die morgen früh eines dieser Tools tatsächlich einsetzen will. Ein einzeln veröffentlichtes Plugin bekommt den Beitrag, den es verdient: was es tut, was es nicht tut, welches Problem es löst, welche Trade-offs man vor der Installation kennen sollte. Das ist die redaktionelle Wette. Sie ist langsamer, und sie ist besser. Sie ist auch genau die Übersetzungsarbeit, die ich an anderer Stelle beschrieben habe - Code für Menschen erklären, die keinen Code schreiben. Auf OSS angewandt heißt das: Man wirft niemandem einundzwanzig Repos vor die Füße. Man reicht eines. Mit einer Geschichte.
+
+Feinschliff erscheint heute. Es ist das Plugin, das ich in meinem eigenen Alltag am häufigsten benutze, und der Grund, warum dieser Marketplace die Form hat, die er hat. Aus Claude-Design-HTML macht es markenkonforme PowerPoint-Decks. Es ist der Anker: Stimmt das Design-System, erbt jedes weitere Plugin, das Visuals produziert (Slides, Video-Frames, Infografiken, Social-Cards), die Markendisziplin automatisch. Der Beitrag zu Feinschliff selbst folgt, sobald es live ist. Dieser hier ist die Eröffnung des Marketplace und der Auftakt der Kadenz.
+
+Nacht Schafft Wissen war für mich nicht nur der Titel eines Freitagabends. Seit Jahresanfang lebe ich es als Routine. Abends klappe ich den Arbeitslaptop bei BSH zu, fahre mit dem Rad heim, klappe am Küchentisch das MacBook auf und baue weiter. Dabei sind Abend für Abend Claude-Code-Plugins entstanden. Plugins für Claude, geschrieben mit Claude. Einige helfen mir beim Recherchieren und beim Verdichten von Wissen, andere produzieren Decks, Videos und Visualisierungen, wieder andere steuern ein Homelab. Sie laufen seit Monaten in meiner eigenen Arbeit. Die nächsten Wochen gehören zuerst den Werkzeugen für Wissensmanagement und Content-Produktion - jenen Plugins, zu denen ich am häufigsten greife, wenn aus Notizen ein veröffentlichter Beitrag werden soll. Sie erscheinen hier eines nach dem anderen, jeweils mit dem Beitrag, der erklärt, was das Plugin tut und warum es seinen Platz verdient.
+
+Heute ist auch der Tag, an dem marsmike.com die "Coming Soon"-Seite ablöst. Was hier entsteht, ist die ausführliche Version dessen, was ich auf LinkedIn poste: die gleichen Gedanken, mit dem Platz, den Code zu zeigen, die Trade-offs sichtbar zu machen und auch das, was nicht funktioniert hat. Forschung und Praxis aus diesen letzten Monaten, in verständlicher Sprache, ein Stück nach dem anderen. Der deutsche RSS-Feed liegt unter /rss.xml, der englische unter /en/rss.xml. LinkedIn für die Gespräche, GitHub für den Code. Kein Newsletter, keine Pop-ups, kein "Abonnieren, um weiterzulesen". Nur das Schreiben.
