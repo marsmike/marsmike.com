@@ -1,0 +1,29 @@
+---
+import LangSwitcher from './LangSwitcher.astro';
+import ThemeToggle from './ThemeToggle.astro';
+
+interface Props {
+  lang: 'de' | 'en';
+  siblingPath?: string;
+}
+const { lang, siblingPath } = Astro.props;
+const homeHref = lang === 'de' ? '/' : '/en/';
+const postsHref = lang === 'de' ? '/' : '/en/';
+const aboutHref = lang === 'de' ? '/about/' : '/en/about/';
+const aboutLabel = lang === 'de' ? 'Über' : 'About';
+const postsLabel = lang === 'de' ? 'Beiträge' : 'Posts';
+---
+
+<header class="border-b border-[var(--color-border)] sticky top-0 backdrop-blur-sm bg-[var(--color-bg)]/85 z-10">
+  <div class="max-w-3xl mx-auto px-5 py-4 flex items-center justify-between">
+    <a href={homeHref} class="font-semibold no-underline text-[var(--color-text)] hover:text-[var(--color-accent)]">
+      marsmike.com
+    </a>
+    <nav class="flex items-center gap-5 text-sm">
+      <a href={postsHref} class="no-underline text-[var(--color-muted)] hover:text-[var(--color-text)]">{postsLabel}</a>
+      <a href={aboutHref} class="no-underline text-[var(--color-muted)] hover:text-[var(--color-text)]">{aboutLabel}</a>
+      <LangSwitcher currentLang={lang} siblingPath={siblingPath} />
+      <ThemeToggle />
+    </nav>
+  </div>
+</header>

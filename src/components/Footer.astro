@@ -1,0 +1,24 @@
+---
+interface Props {
+  lang: 'de' | 'en';
+}
+const { lang } = Astro.props;
+const rssHref = lang === 'de' ? '/rss.xml' : '/en/rss.xml';
+const sourceLabel = lang === 'de' ? 'Quellcode' : 'Source';
+---
+
+<footer class="border-t border-[var(--color-border)] mt-16">
+  <div class="max-w-3xl mx-auto px-5 py-6 text-sm text-[var(--color-muted)] flex flex-wrap gap-x-4 gap-y-2 justify-between">
+    <div>
+      <span>marsmike.com</span>
+      <span aria-hidden="true"> · </span>
+      <a href="https://github.com/marsmike/marsmike.com" class="no-underline hover:underline">{sourceLabel} (MIT)</a>
+    </div>
+    <div class="flex gap-x-4">
+      <a href={rssHref} class="no-underline hover:underline">RSS</a>
+      <a href="https://github.com/marsmike" class="no-underline hover:underline">GitHub</a>
+      <a href="https://www.linkedin.com/in/marsmike" class="no-underline hover:underline">LinkedIn</a>
+      <a href="https://x.com/marsmike" class="no-underline hover:underline">X</a>
+    </div>
+  </div>
+</footer>

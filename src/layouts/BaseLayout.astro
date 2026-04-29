@@ -1,0 +1,70 @@
+---
+import '~/styles/global.css';
+import Header from '~/components/Header.astro';
+import Footer from '~/components/Footer.astro';
+
+interface Props {
+  lang: 'de' | 'en';
+  title: string;
+  description: string;
+  canonicalPath?: string;
+  siblingPath?: string;
+  ogType?: 'website' | 'article';
+}
+
+const {
+  lang,
+  title,
+  description,
+  canonicalPath = Astro.url.pathname,
+  siblingPath,
+  ogType = 'website',
+} = Astro.props;
+
+const siteUrl = 'https://marsmike.com';
+const canonical = new URL(canonicalPath, siteUrl).toString();
+const sibling = siblingPath ? new URL(siblingPath, siteUrl).toString() : undefined;
+const otherLang = lang === 'de' ? 'en' : 'de';
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {sibling ? (
+      <link rel="alternate" hreflang={otherLang} href={sibling} />
+    ) : null}
+    <link rel="alternate" hreflang={lang} href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="alternate" type="application/rss+xml" title="marsmike.com (DE)" href="/rss.xml" />
+    <link rel="alternate" type="application/rss+xml" title="marsmike.com (EN)" href="/en/rss.xml" />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={lang === 'de' ? 'de_DE' : 'en_US'} />
+    {sibling ? (<meta property="og:locale:alternate" content={otherLang === 'de' ? 'de_DE' : 'en_US'} />) : null}
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:creator" content="@MarsMike" />
+    <script is:inline>
+      // FOUC guard: apply theme before paint
+      (() => {
+        const stored = localStorage.getItem('theme');
+        const prefersDark = matchMedia('(prefers-color-scheme: dark)').matches;
+        const dark = stored === 'dark' || (!stored && prefersDark) || (stored !== 'light' && stored !== 'system' && prefersDark);
+        if (dark) document.documentElement.classList.add('dark');
+      })();
+    </script>
+  </head>
+  <body>
+    <Header lang={lang} siblingPath={siblingPath} />
+    <main class="max-w-3xl mx-auto px-5 py-10">
+      <slot />
+    </main>
+    <Footer lang={lang} />
+  </body>
+</html>
