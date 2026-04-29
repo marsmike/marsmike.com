@@ -67,6 +67,7 @@ KNOWN_DE_ANGLICISMS: set[str] = {
     "Scaffolding", "Spreading-Activation", "Chain-of-Thought",
     "Background-Agenten", "Background-Agent",
     "Skills", "Skill",
+    "Slow-Cooking", "Slow-Plugins", "Slow-Plugin",
 }
 
 LT_API = "https://api.languagetool.org/v2/check"
