@@ -58,6 +58,15 @@ KNOWN_DE_ANGLICISMS: set[str] = {
     "Coming Soon",
     "Newsletter",
     "agentic-toolkit", "marsmike",
+    # Recurring concept names from the vault (Resources/Concepts/) — likely to
+    # appear in many future DE posts. Add new terms here as they show up.
+    "Harness", "Harness-as-Product", "Harness-Loop-Pattern", "Harness-Moves",
+    "Context", "Context-Engineering", "Context Engineering", "Context-Files",
+    "Intent", "Intent-Engineering",
+    "Agent-Memory", "Agent Memory", "Agent-Knowledge-Layer",
+    "Scaffolding", "Spreading-Activation", "Chain-of-Thought",
+    "Background-Agenten", "Background-Agent",
+    "Skills", "Skill",
 }
 
 LT_API = "https://api.languagetool.org/v2/check"
