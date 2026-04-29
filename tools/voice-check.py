@@ -68,6 +68,32 @@ KNOWN_DE_ANGLICISMS: set[str] = {
     "Background-Agenten", "Background-Agent",
     "Skills", "Skill",
     "Slow-Cooking", "Slow-Plugins", "Slow-Plugin",
+    # Feinschliff post — plugin-specific terminology
+    "präsentationsreif",
+    "Verify", "Verify-Lauf",
+    "elf-klassigen", "elf-klassige", "elf-klassiger",
+    "Defekt-Klassen", "Defekt-Klasse",
+    "Ingest",
+    "Overflow", "Empty", "Placeholder", "Empty Placeholder",
+    "Layout-Mismatch", "Brand-Violation",
+    "Spacing", "Density", "One-Idea", "Bullet-Dump", "Bullets",
+    "Audience-Mismatch", "Red-Line-Break",
+    "Curse-of-Knowledge", "Curse-of-Knowledge-Stelle", "Claim-Title",
+    "DTCG", "DTCG-Draft", "DTCG-Draft-2-Design-Tokens",
+    "Renderer", "Renderer-Adaptern", "Renderer-Adapter",
+    "Baukasten",
+    "cp", "brands", "meinco", "myco",
+    "Noto", "Sans", "Noto Sans",
+    "bash",
+    "ARR", "MRR", "EBITDA",
+    "awesome-design-md",
+    "Vercel", "Linear", "Notion", "Stripe", "Spotify",
+    "Slow", "Polish",
+    "extend", "compile", "deck",
+    # Casual-register verbs Mike's voice accepts (mirroring EN colloquialisms).
+    # LT flags these as "Umgangssprache"; Mike's voice spec tolerates the casual form
+    # when the EN sibling is also casual ("drop one in, get X out" → "reinwerfen, X rauskriegen").
+    "reinwerfen", "rauskriegen", "rausbekommen", "reinkommen", "rausziehen",
 }
 
 LT_API = "https://api.languagetool.org/v2/check"
