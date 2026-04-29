@@ -1,0 +1,40 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+const tagline = 'Senior Software Engineer @ BSH · 25+ Jahre · Schreibe über KI × Developer-Produktivität.';
+---
+
+<BaseLayout
+  lang="de"
+  title="Über — marsmike.com"
+  description={tagline}
+  siblingPath="/en/about/"
+>
+  <article class="space-y-5 leading-relaxed">
+    <header class="mb-8">
+      <h1 class="text-3xl font-bold text-[var(--color-text)] mb-2">Mike Müller</h1>
+      <p class="text-[var(--color-muted)]">Senior Software Engineer @ BSH · Regensburg</p>
+    </header>
+
+    <p>Fünfundzwanzig Jahre Softwareentwicklung. Angefangen mit Smalltalk und OOP. Heute mache ich Small Talk mit dem System.</p>
+
+    <p>Derzeit Senior Software Engineer im RAISE-SW GenAI-Team bei BSH. Wir bauen produktionsreife KI-Agenten in der Software-Delivery-Pipeline. Außerdem gewählter Betriebsrat — verantwortlich dafür, wie KI-Einführungen in einem Konzern mit 60.000 Mitarbeitenden tatsächlich ankommen.</p>
+
+    <p>Worüber ich nachdenke: Software-Delivery im GenAI-Zeitalter, von der Anforderung bis in die Pipeline. Anforderungen, Architektur, Wissensmanagement, CI/CD, Background-Agenten — die alltägliche Reibung, nicht die Keynote-Version.</p>
+
+    <p>Ich schreibe darüber hier auf marsmike.com. Kurze Videos und Notizen für erfahrene Entwickler und die Tech Leads, die sie einstellen. Praktische Antworten, kein Hype.</p>
+
+    <p>Offen für Mentoring-Gespräche, Diskussion über Agent-Zuverlässigkeit, Fragen zur späten Karrierephase (Altersteilzeit, KI-Ära) und ernsthafte Recruiter-Anfragen.</p>
+
+    <hr class="border-[var(--color-border)] my-8" />
+
+    <section class="text-sm text-[var(--color-muted)]">
+      <h2 class="text-xs uppercase tracking-wider mb-3">Kontakt</h2>
+      <ul class="space-y-1 list-none pl-0">
+        <li><a href="mailto:mike@marsmike.com" class="no-underline hover:underline">mike@marsmike.com</a></li>
+        <li><a href="https://www.linkedin.com/in/marsmike" class="no-underline hover:underline">LinkedIn</a></li>
+        <li><a href="https://github.com/marsmike" class="no-underline hover:underline">GitHub</a></li>
+        <li><a href="https://x.com/marsmike" class="no-underline hover:underline">X (@MarsMike)</a></li>
+      </ul>
+    </section>
+  </article>
+</BaseLayout>

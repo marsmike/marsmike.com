@@ -1,0 +1,40 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+const tagline = 'Senior Software Engineer @ BSH · 25+ years · Writing on AI × developer productivity.';
+---
+
+<BaseLayout
+  lang="en"
+  title="About — marsmike.com"
+  description={tagline}
+  siblingPath="/about/"
+>
+  <article class="space-y-5 leading-relaxed">
+    <header class="mb-8">
+      <h1 class="text-3xl font-bold text-[var(--color-text)] mb-2">Mike Müller</h1>
+      <p class="text-[var(--color-muted)]">Senior Software Engineer @ BSH · Regensburg</p>
+    </header>
+
+    <p>Twenty-five years writing software. Started with Smalltalk and OOP. These days I'm doing small-talk with the system.</p>
+
+    <p>Currently Senior Software Engineer in BSH's RAISE-SW GenAI team, building production AI agents inside the software delivery pipeline. Also elected Betriebsrat (works council member) at BSH, responsible for how AI rollouts actually land in a 60,000-person company.</p>
+
+    <p>What I think about: software delivery in the GenAI era, end-to-end. Requirements, architecture, knowledge management, CI/CD, background agents — the daily friction, not the keynote-talk version.</p>
+
+    <p>I'm writing here at marsmike.com. Short videos and notes for senior engineers and the tech leads who hire them. Practical answers, not hype.</p>
+
+    <p>Open to mentorship conversations, agent-reliability discussion, late-career engineering questions (Altersteilzeit, AI-era career arc), and serious recruiter outreach.</p>
+
+    <hr class="border-[var(--color-border)] my-8" />
+
+    <section class="text-sm text-[var(--color-muted)]">
+      <h2 class="text-xs uppercase tracking-wider mb-3">Contact</h2>
+      <ul class="space-y-1 list-none pl-0">
+        <li><a href="mailto:mike@marsmike.com" class="no-underline hover:underline">mike@marsmike.com</a></li>
+        <li><a href="https://www.linkedin.com/in/marsmike" class="no-underline hover:underline">LinkedIn</a></li>
+        <li><a href="https://github.com/marsmike" class="no-underline hover:underline">GitHub</a></li>
+        <li><a href="https://x.com/marsmike" class="no-underline hover:underline">X (@MarsMike)</a></li>
+      </ul>
+    </section>
+  </article>
+</BaseLayout>
