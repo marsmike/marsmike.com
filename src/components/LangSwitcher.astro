@@ -1,0 +1,22 @@
+---
+interface Props {
+  currentLang: 'de' | 'en';
+  siblingPath?: string; // e.g. "/en/posts/foo/" or "/posts/foo/"
+}
+const { currentLang, siblingPath } = Astro.props;
+const otherLang = currentLang === 'de' ? 'en' : 'de';
+const otherLabel = otherLang.toUpperCase();
+const currentLabel = currentLang.toUpperCase();
+---
+
+<div class="flex items-center gap-2 text-sm text-[var(--color-muted)]">
+  <span aria-current="true" class="text-[var(--color-text)]">{currentLabel}</span>
+  {siblingPath ? (
+    <>
+      <span aria-hidden="true">·</span>
+      <a href={siblingPath} hreflang={otherLang} class="no-underline hover:underline">
+        {otherLabel}
+      </a>
+    </>
+  ) : null}
+</div>
