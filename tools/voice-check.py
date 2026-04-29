@@ -104,6 +104,7 @@ KNOWN_DE_ANGLICISMS: set[str] = {
     "Vier-Slot-Layout", "Sieben-Bullets",
     "Anker-Totalen", "Finanz-Brücken",
     "Matching-Engine", "Token-System",
+    "brand-pluggable", "Brand-Pluggable",
     # Casual-register verbs Mike's voice accepts (mirroring EN colloquialisms).
     # LT flags these as "Umgangssprache"; Mike's voice spec tolerates the casual form
     # when the EN sibling is also casual ("drop one in, get X out" → "reinwerfen, X rauskriegen").
