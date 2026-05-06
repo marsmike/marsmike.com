@@ -109,6 +109,20 @@ KNOWN_DE_ANGLICISMS: set[str] = {
     # LT flags these as "Umgangssprache"; Mike's voice spec tolerates the casual form
     # when the EN sibling is also casual ("drop one in, get X out" → "reinwerfen, X rauskriegen").
     "reinwerfen", "rauskriegen", "rausbekommen", "reinkommen", "rausziehen",
+    # Feinschliff v0.2.0 post — open brand-pack names and design-domain vocabulary.
+    "Catppuccin", "Catppuccin-Familie", "Catppuccin-Mocha-Variante",
+    "Mocha", "Latte", "Frappé", "Macchiato",
+    "Solarized", "Nord", "Dracula", "Gruvbox",
+    "Hairlines", "Hairline",
+    "Components-Showcase", "Hero-Element",
+    "OOXML", "OOXML-",
+    "Spec", "Spec-Format",
+    "README", "Drop-in",
+    "px-Karten", "px-Ecken",
+    # Real German words LT's de-DE dictionary doesn't recognise.
+    "eponym", "eponymen", "eponyme", "eponymes", "eponymer",
+    "datendicht", "datendichte", "datendichter",
+    "editorial", "editorialer", "editoriale", "editorialen",
 }
 
 LT_API = "https://api.languagetool.org/v2/check"
@@ -184,6 +198,11 @@ def is_de_false_positive(match: dict, body: str, flagged: str) -> bool:
     if any(s < offset < e for s, e in _md_code_spans(body)):
         return True
 
+    # Fenced code blocks (```…```) hold full CLI sessions, env-var assignments,
+    # config snippets. Same reason as inline code — out-of-prose, suppress.
+    if any(s < offset < e for s, e in _md_fenced_code_spans(body)):
+        return True
+
     # LT misfires on capitalisation of words that follow a markdown bold-with-period
     # sentence header like `**Section.** Word ...` — `Word` IS a sentence start, but
     # LT can't parse the markdown boundary. Detect by `**.` within 8 chars before.
@@ -207,6 +226,14 @@ def _md_italic_spans(body: str) -> list[tuple[int, int]]:
 def _md_code_spans(body: str) -> list[tuple[int, int]]:
     """Return list of (start, end) offsets covering markdown inline code `\`…\``."""
     return [(m.start(), m.end()) for m in re.finditer(r'`[^`\n]+`', body)]
+
+
+def _md_fenced_code_spans(body: str) -> list[tuple[int, int]]:
+    """Return list of (start, end) offsets covering fenced code blocks ```…```.
+    Treats CLI / config dumps as out-of-prose so LT doesn't flag command names,
+    flag values, env-var assignments, or repeated tokens like `feinschliff
+    FEINSCHLIFF_BRAND=…`."""
+    return [(m.start(), m.end()) for m in re.finditer(r'```.*?```', body, re.DOTALL)]
 
 
 def lt_check_de(body: str) -> tuple[list[dict], str | None]:
