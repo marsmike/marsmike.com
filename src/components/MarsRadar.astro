@@ -1,0 +1,65 @@
+---
+interface Props {
+  lang: 'de' | 'en';
+  variant?: 'hero' | 'post' | 'compact' | 'inline';
+  items?: Array<{
+    label: string;
+    href?: string;
+    title?: string;
+    top: string;
+    left: string;
+  }>;
+}
+
+const { lang, variant = 'hero' } = Astro.props;
+
+const { items = [] } = Astro.props;
+
+const labels = lang === 'de'
+  ? {
+      title: 'Mars-Radar',
+      subtitle: 'Klickbare Artikel-Tags aus dem aktuellen Feld.',
+      center: 'MarsMike',
+    }
+  : {
+      title: 'Mars Radar',
+      subtitle: 'Clickable article tags from the current field.',
+      center: 'MarsMike',
+    };
+---
+
+<section class:list={['mars-radar-card', `mars-radar-card--${variant}`]}>
+  <div class="eyebrow mb-2">{labels.title}</div>
+  <p class="mars-radar-card__subtitle">{labels.subtitle}</p>
+  <div class="mars-radar" aria-hidden="true">
+    <div class="mars-radar__grid">
+      <div class="mars-radar__orbit mars-radar__orbit--1"></div>
+      <div class="mars-radar__orbit mars-radar__orbit--2"></div>
+      <div class="mars-radar__orbit mars-radar__orbit--3"></div>
+      <div class="mars-radar__cross mars-radar__cross--h"></div>
+      <div class="mars-radar__cross mars-radar__cross--v"></div>
+      <div class="mars-radar__sweep"></div>
+      <div class="mars-radar__planet">
+        <span>{labels.center}</span>
+      </div>
+      {items.map((node) => (
+        node.href ? (
+          <a
+            href={node.href}
+            title={node.title}
+            class="mars-radar__node mars-radar__node-link no-underline"
+            style={`top:${node.top};left:${node.left};`}
+          >
+            <span class="mars-radar__dot"></span>
+            <span class="mars-radar__label">{node.label}</span>
+          </a>
+        ) : (
+          <div class="mars-radar__node" style={`top:${node.top};left:${node.left};`}>
+            <span class="mars-radar__dot"></span>
+            <span class="mars-radar__label">{node.label}</span>
+          </div>
+        )
+      ))}
+    </div>
+  </div>
+</section>

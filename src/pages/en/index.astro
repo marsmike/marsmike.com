@@ -1,15 +1,28 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '~/layouts/BaseLayout.astro';
+import MarsRadar from '~/components/MarsRadar.astro';
 import PostCard from '~/components/PostCard.astro';
+import RoverTrail from '~/components/RoverTrail.astro';
 
 const posts = (await getCollection('posts', ({ data }) => data.lang === 'en' && data.status === 'live'))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const [lead, ...rest] = posts;
 
 const tagline = 'Senior Software Engineer @ BSH · 25+ years · Writing on AI × developer productivity.';
+const focusAreas = ['Agentic Engineering', 'Developer Productivity', 'Knowledge Systems', 'Software Delivery'];
+const radarItems = [
+  { label: 'agentic-toolkit', href: '#post-agentic-toolkit-open-sourced', title: 'My agentic toolkit is now open source', top: '14%', left: '69%' },
+  { label: 'claude-code', href: '#post-agentic-toolkit-open-sourced', title: 'My agentic toolkit is now open source', top: '29%', left: '21%' },
+  { label: 'oss', href: '#post-agentic-toolkit-open-sourced', title: 'My agentic toolkit is now open source', top: '49%', left: '79%' },
+  { label: 'feinschliff', href: '#post-feinschliff-launch', title: 'Feinschliff: a typed component system for LLM-generated decks', top: '78%', left: '61%' },
+  { label: 'powerpoint', href: '#post-feinschliff-launch', title: 'Feinschliff: a typed component system for LLM-generated decks', top: '69%', left: '16%' },
+  { label: 'design-systems', href: '#post-feinschliff-launch', title: 'Feinschliff: a typed component system for LLM-generated decks', top: '58%', left: '47%' },
+];
 
 const dePosts = await getCollection('posts', ({ data }) => data.lang === 'de' && data.status === 'live');
 const siblingPath = dePosts.length > 0 ? '/' : undefined;
+const archiveCountLabel = `${posts.length} ENTRIES`;
 ---
 
 <BaseLayout
@@ -17,28 +30,132 @@ const siblingPath = dePosts.length > 0 ? '/' : undefined;
   title="marsmike.com"
   description={tagline}
   siblingPath={siblingPath}
+  shell="wide"
 >
-  <section class="mb-12">
-    <h1 class="text-2xl font-semibold text-[var(--color-text)] mb-2">Mike Müller</h1>
-    <p class="text-[var(--color-muted)] leading-relaxed">{tagline}</p>
+  <section class="hero-console mb-16">
+    <div class="console-strip">
+      <span>◆ Mission Log · MarsMike Station</span>
+      <span>FRAME 001 / 003</span>
+      <span>FILED · SOL 1463</span>
+    </div>
+    <div class="hero-console__grid">
+    <div class="hero-copy">
+      <div class="eyebrow mb-4">Mission Log</div>
+      <h1 class="font-[var(--font-display)] text-5xl leading-none tracking-[-0.04em] max-w-[12ch] mb-5 text-[var(--color-text)]">
+        Agentic systems under Martian conditions.
+      </h1>
+      <p class="text-lg text-[var(--color-muted)] leading-relaxed max-w-[48rem]">
+        {tagline} This is where the field reports land on delivery systems that still work when
+        the air gets thin: enterprise gravity, tooling dust, CI/CD friction, and
+        production-grade agents instead of demo hallucinations.
+      </p>
+      <div class="tag-cluster mt-6">
+        {focusAreas.map((area) => (
+        <span class="tag-pill">{area}</span>
+        ))}
+      </div>
+      <div class="mt-6">
+        <RoverTrail lang="en" />
+      </div>
+      <div class="mt-8 flex flex-wrap gap-3">
+        {lead && (
+          <a href={`/en/posts/${lead.slug.replace(/^en\//, '')}/`} class="button-link button-link--solid no-underline">
+            Latest field report ↗
+          </a>
+        )}
+        <a href="/en/about/" class="button-link no-underline">Crew dossier</a>
+      </div>
+    </div>
+
+    <aside class="status-console">
+      <div class="status-console__top">
+        <span class="eyebrow">Station Status · MarsMike-01</span>
+        <span class="live-dot live-dot--ok" aria-hidden="true"></span>
+      </div>
+      <div class="status-console__rows">
+        <div class="status-console__row">
+          <span class="status-console__label">Mission</span>
+          <span class="status-console__value">Hold under load</span>
+        </div>
+        <div class="status-console__row">
+          <span class="status-console__label">Surface</span>
+          <span class="status-console__value">Regensburg · enterprise gravity</span>
+        </div>
+        <div class="status-console__row">
+          <span class="status-console__label">Shipping</span>
+          <span class="status-console__value">agentic-toolkit · v0.42.7</span>
+        </div>
+        <div class="status-console__row">
+          <span class="status-console__label">Signal</span>
+          <span class="status-console__value">Long reports here · short on LinkedIn</span>
+        </div>
+      </div>
+      <MarsRadar lang="en" variant="inline" items={radarItems} />
+    </aside>
+    </div>
   </section>
 
-  <section>
-    <h2 class="text-sm uppercase tracking-wider text-[var(--color-muted)] mb-2">Posts</h2>
+  <section class="archive-section mb-16">
+    <div class="archive-head-grid">
+      <div class="section-head section-head--archive">
+        <div class="section-head__index">03</div>
+        <div>
+          <div class="eyebrow mb-2">Archive · Latest transmissions</div>
+          <h2 class="font-[var(--font-display)] text-4xl tracking-[-0.04em] text-[var(--color-text)]">Latest field reports</h2>
+        </div>
+      </div>
+      <aside class="status-console archive-console">
+        <div class="status-console__top">
+          <span class="eyebrow">Archive Status · Field Log</span>
+          <span class="live-dot live-dot--ok" aria-hidden="true"></span>
+        </div>
+        <div class="status-console__rows">
+          <div class="status-console__row">
+            <span class="status-console__label">Entries</span>
+            <span class="status-console__value">{archiveCountLabel}</span>
+          </div>
+          <div class="status-console__row">
+            <span class="status-console__label">Focus</span>
+            <span class="status-console__value">Architecture · delivery · agents</span>
+          </div>
+        </div>
+        <div class="archive-console__actions">
+          <a href="/en/about/" class="button-link no-underline">More context about MarsMike ↗</a>
+        </div>
+      </aside>
+    </div>
     {posts.length === 0 ? (
       <p class="text-[var(--color-muted)] py-6">Nothing published yet.</p>
     ) : (
-      <div>
-        {posts.map((post) => (
+      <>
+        {lead && (
           <PostCard
-            title={post.data.title}
-            summary={post.data.summary}
-            date={post.data.date}
-            href={`/en/posts/${post.slug.replace(/^en\//, '')}/`}
+            id={`post-${lead.slug.replace(/^en\//, '')}`}
+            title={lead.data.title}
+            summary={lead.data.summary}
+            date={lead.data.date}
+            href={`/en/posts/${lead.slug.replace(/^en\//, '')}/`}
             lang="en"
+            tags={lead.data.tags}
+            featured={true}
           />
-        ))}
-      </div>
+        )}
+        {rest.length > 0 && (
+          <div class="mt-6">
+            {rest.map((post) => (
+              <PostCard
+                id={`post-${post.slug.replace(/^en\//, '')}`}
+                title={post.data.title}
+                summary={post.data.summary}
+                date={post.data.date}
+                href={`/en/posts/${post.slug.replace(/^en\//, '')}/`}
+                lang="en"
+                tags={post.data.tags}
+              />
+            ))}
+          </div>
+        )}
+      </>
     )}
   </section>
 </BaseLayout>
