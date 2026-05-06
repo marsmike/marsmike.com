@@ -9,12 +9,12 @@ const otherLabel = otherLang.toUpperCase();
 const currentLabel = currentLang.toUpperCase();
 ---
 
-<div class="flex items-center gap-2 text-sm text-[var(--color-muted)]">
-  <span aria-current="true" class="text-[var(--color-text)]">{currentLabel}</span>
+<div class="control-pill">
+  <span aria-current="true" class="control-pill__current">{currentLabel}</span>
   {siblingPath ? (
     <>
-      <span aria-hidden="true">·</span>
-      <a href={siblingPath} hreflang={otherLang} class="no-underline hover:underline">
+      <span aria-hidden="true" class="control-pill__sep">/</span>
+      <a href={siblingPath} hreflang={otherLang} class="control-pill__link no-underline">
         {otherLabel}
       </a>
     </>

@@ -1,26 +1,91 @@
 ---
+import RoverTrail from '~/components/RoverTrail.astro';
+
 interface Props {
+  id?: string;
   title: string;
   summary: string;
   date: Date;
   href: string;
   lang: 'de' | 'en';
+  tags?: string[];
+  featured?: boolean;
 }
-const { title, summary, date, href, lang } = Astro.props;
+const { id, title, summary, date, href, lang, tags = [], featured = false } = Astro.props;
 const dateLocale = lang === 'de' ? 'de-DE' : 'en-US';
 const dateStr = date.toLocaleDateString(dateLocale, {
   year: 'numeric', month: 'short', day: 'numeric',
 });
+const latestLabel = lang === 'de' ? 'Aktuell' : 'Latest';
+const signalLabel = lang === 'de' ? 'Signal' : 'Signal';
+const tagsLabel = lang === 'de' ? 'Tags' : 'Tags';
+const dateLabel = lang === 'de' ? 'Datum' : 'Date';
+const linkLabel = lang === 'de' ? 'Artikel offen' : 'Article open';
 ---
 
-<article class="py-5 border-b border-[var(--color-border)] last:border-b-0">
-  <a href={href} class="no-underline group block">
-    <div class="text-xs text-[var(--color-muted)] tabular-nums mb-1">
-      <time datetime={date.toISOString()}>{dateStr}</time>
-    </div>
-    <h2 class="text-lg font-semibold text-[var(--color-text)] group-hover:text-[var(--color-accent)] transition-colors mb-1">
-      {title}
-    </h2>
-    <p class="text-[var(--color-muted)]">{summary}</p>
+<article id={id} class:list={['post-card', featured && 'post-card--featured']}>
+  <a href={href} class="post-card__link no-underline group block">
+    {featured ? (
+      <div class="post-card__featured-grid">
+        <div class="post-card__featured-copy">
+          <div class="post-card__meta">
+            <time datetime={date.toISOString()}>{dateStr}</time>
+          </div>
+          <div class="post-card__title-row">
+            <h2 class="post-card__title">{title}</h2>
+            <span class="post-card__arrow" aria-hidden="true">↗</span>
+          </div>
+          <p class="post-card__summary">{summary}</p>
+          {tags.length > 0 && (
+            <div class="tag-cluster mt-4">
+              {tags.slice(0, 4).map((tag) => (
+                <span class="tag-pill">{tag}</span>
+              ))}
+            </div>
+          )}
+        </div>
+        <div class="post-card__rail">
+          <div class="post-card__rail-top">
+            <span>FIG. 03.01</span>
+            <span>{linkLabel}</span>
+          </div>
+          <div class="post-card__rail-body">
+            <RoverTrail lang={lang} compact={true} />
+            <div class="post-card__rail-list">
+              <div class="post-card__rail-row">
+                <span class="post-card__rail-key">{signalLabel}</span>
+                <span class="post-card__rail-value">{latestLabel}</span>
+              </div>
+              <div class="post-card__rail-row">
+                <span class="post-card__rail-key">{dateLabel}</span>
+                <span class="post-card__rail-value">{dateStr}</span>
+              </div>
+              <div class="post-card__rail-row">
+                <span class="post-card__rail-key">{tagsLabel}</span>
+                <span class="post-card__rail-value">{tags.slice(0, 2).join(' · ')}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    ) : (
+      <>
+        <div class="post-card__meta">
+          <time datetime={date.toISOString()}>{dateStr}</time>
+        </div>
+        <div class="post-card__title-row">
+          <h2 class="post-card__title">{title}</h2>
+          <span class="post-card__arrow" aria-hidden="true">↗</span>
+        </div>
+        <p class="post-card__summary">{summary}</p>
+        {tags.length > 0 && (
+          <div class="tag-cluster mt-4">
+            {tags.slice(0, 3).map((tag) => (
+              <span class="tag-pill">{tag}</span>
+            ))}
+          </div>
+        )}
+      </>
+    )}
   </a>
 </article>

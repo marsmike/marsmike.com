@@ -1,0 +1,27 @@
+---
+interface Props {
+  lang: 'de' | 'en';
+  compact?: boolean;
+}
+
+const { lang, compact = false } = Astro.props;
+const label = lang === 'de' ? 'Rover-Konvoi' : 'Surface convoy';
+---
+
+<div class:list={['rover-trail', compact && 'rover-trail--compact']} aria-label={label}>
+  <div class="rover-trail__track"></div>
+  <div class="rover-trail__dust rover-trail__dust--1" aria-hidden="true"></div>
+  <div class="rover-trail__dust rover-trail__dust--2" aria-hidden="true"></div>
+  <div class="rover rover--1" aria-hidden="true">
+    <span class="rover__body"></span>
+    <span class="rover__mast"></span>
+    <span class="rover__wheel rover__wheel--left"></span>
+    <span class="rover__wheel rover__wheel--right"></span>
+  </div>
+  <div class="rover rover--2" aria-hidden="true">
+    <span class="rover__body"></span>
+    <span class="rover__mast"></span>
+    <span class="rover__wheel rover__wheel--left"></span>
+    <span class="rover__wheel rover__wheel--right"></span>
+  </div>
+</div>

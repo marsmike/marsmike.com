@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '~/layouts/BaseLayout.astro';
+import RoverTrail from '~/components/RoverTrail.astro';
 const tagline = 'Senior Software Engineer @ BSH · 25+ Jahre · Schreibe über KI × Developer-Produktivität.';
 ---
 
@@ -8,33 +9,105 @@ const tagline = 'Senior Software Engineer @ BSH · 25+ Jahre · Schreibe über K
   title="Über — marsmike.com"
   description={tagline}
   siblingPath="/en/about/"
+  shell="wide"
 >
-  <article class="space-y-5 leading-relaxed">
-    <header class="mb-8">
-      <h1 class="text-3xl font-bold text-[var(--color-text)] mb-2">Mike Müller</h1>
-      <p class="text-[var(--color-muted)]">Senior Software Engineer @ BSH · Regensburg</p>
-    </header>
+  <article class="page-stack">
+    <div class="console-strip">
+      <span>◆ Crew-Dossier · ID-04</span>
+      <span>STATUS · VERIFIED</span>
+      <span>BASE · REGENSBURG</span>
+    </div>
+    <section class="dossier-layout">
+      <div class="surface-card surface-card--muted">
+        <div class="eyebrow mb-4">Crew-Dossier</div>
+        <h1 class="font-[var(--font-display)] text-5xl leading-none tracking-[-0.04em] text-[var(--color-text)] mb-4">
+          Mike Müller
+        </h1>
+        <p class="text-xl text-[var(--color-muted)] max-w-[38rem] leading-relaxed">
+          Senior Software Engineer @ BSH, 25+ Jahre Softwareentwicklung, schreibt über KI × Developer-Produktivität.
+        </p>
+        <p class="mt-6 text-[var(--color-text)] leading-relaxed max-w-[42rem]">
+          Fünfundzwanzig Jahre Softwareentwicklung. Angefangen mit Smalltalk und klassischer OOP.
+          Heute geht es um Systeme, in denen Menschen, Tools und Agenten zuverlässig zusammenarbeiten müssen.
+          MarsMike ist halb Markenname, halb Betriebszustand: wenig Sauerstoff, viel Staub, trotzdem muss die Lieferung ankommen.
+        </p>
+        <div class="mt-6">
+          <RoverTrail lang="de" compact={true} />
+        </div>
+      </div>
 
-    <p>Fünfundzwanzig Jahre Softwareentwicklung. Angefangen mit Smalltalk und OOP. Heute mache ich Small Talk mit dem System.</p>
+      <aside class="status-stack">
+        <figure class="surface-card p-3">
+          <img
+            src="/images/marsmike-profile.png"
+            alt="Mike Müller im Marsanzug vor einer Marslandschaft"
+            class="w-full aspect-[4/5] object-cover rounded-[1.1rem] border border-[var(--color-border)]"
+          />
+          <figcaption class="mt-3 text-sm text-[var(--color-muted)] leading-relaxed">
+            MarsMike als Porträtmotiv.
+          </figcaption>
+        </figure>
+        <section class="surface-card">
+          <div class="eyebrow mb-3">Oberfläche</div>
+          <p class="text-[var(--color-text)] leading-relaxed">Regensburg · BSH · Delivery-Pipeline statt Demo-Bühne.</p>
+        </section>
+        <section class="surface-card">
+          <div class="eyebrow mb-3">Signal offen für</div>
+          <p class="text-[var(--color-text)] leading-relaxed">Mentoring, Agent-Reliability-Diskussion, späte Karrierefragen und ernsthafte Recruiter-Anfragen.</p>
+        </section>
+      </aside>
+    </section>
 
-    <p>Derzeit Senior Software Engineer im RAISE-SW GenAI-Team bei BSH. Wir bauen produktionsreife KI-Agenten in der Software-Delivery-Pipeline. Außerdem gewählter Betriebsrat — verantwortlich dafür, wie KI-Einführungen in einem Konzern mit 60.000 Mitarbeitenden tatsächlich ankommen.</p>
+    <section class="section-head section-head--stack">
+      <div class="section-head__index">04</div>
+      <div>
+        <div class="eyebrow mb-2">Dossier · Wer hier funkt</div>
+        <h2 class="font-[var(--font-display)] text-4xl tracking-[-0.04em] text-[var(--color-text)]">Wer hier funkt.</h2>
+      </div>
+    </section>
 
-    <p>Worüber ich nachdenke: Software-Delivery im GenAI-Zeitalter, von der Anforderung bis in die Pipeline. Anforderungen, Architektur, Wissensmanagement, CI/CD, Background-Agenten — die alltägliche Reibung, nicht die Keynote-Version.</p>
+    <section class="grid gap-4 md:grid-cols-3">
+      <div class="surface-card">
+        <div class="eyebrow mb-3">Mission</div>
+        <p class="text-[var(--color-text)] leading-relaxed">
+          Senior Software Engineer im RAISE-SW GenAI-Team bei BSH. Wir bauen produktionsreife KI-Agenten in der Software-Delivery-Pipeline.
+        </p>
+      </div>
+      <div class="surface-card">
+        <div class="eyebrow mb-3">Governance</div>
+        <p class="text-[var(--color-text)] leading-relaxed">
+          Gewählter Betriebsrat, mitverantwortlich dafür, wie KI-Einführungen in einem Konzern mit 60.000 Mitarbeitenden tatsächlich ankommen.
+        </p>
+      </div>
+      <div class="surface-card">
+        <div class="eyebrow mb-3">Radar-Segmente</div>
+        <div class="tag-cluster">
+          <span class="tag-pill">Architektur</span>
+          <span class="tag-pill">Wissensmanagement</span>
+          <span class="tag-pill">CI/CD</span>
+          <span class="tag-pill">Background-Agenten</span>
+        </div>
+      </div>
+    </section>
 
-    <p>Ich schreibe darüber hier auf marsmike.com. Kurze Videos und Notizen für erfahrene Entwickler und die Tech Leads, die sie einstellen. Praktische Antworten, kein Hype.</p>
+    <section class="grid gap-6 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)]">
+      <div class="surface-card">
+        <div class="eyebrow mb-4">Worum es hier geht</div>
+        <div class="space-y-4 text-[var(--color-text)] leading-relaxed">
+          <p>Worüber ich nachdenke: Software-Delivery im GenAI-Zeitalter, von der Anforderung bis in die Pipeline. Anforderungen, Architektur, Wissensmanagement, CI/CD, Background-Agenten — die alltägliche Reibung, nicht die Keynote-Version.</p>
+          <p>Ich schreibe darüber hier als Feldberichte aus der Praxis: Was hält stand, was bricht unter Last, und welche Muster im Produktionsalltag wirklich tragen.</p>
+        </div>
+      </div>
 
-    <p>Offen für Mentoring-Gespräche, Diskussion über Agent-Zuverlässigkeit, Fragen zur späten Karrierephase (Altersteilzeit, KI-Ära) und ernsthafte Recruiter-Anfragen.</p>
-
-    <hr class="border-[var(--color-border)] my-8" />
-
-    <section class="text-sm text-[var(--color-muted)]">
-      <h2 class="text-xs uppercase tracking-wider mb-3">Kontakt</h2>
-      <ul class="space-y-1 list-none pl-0">
-        <li><a href="mailto:mike@marsmike.com" class="no-underline hover:underline">mike@marsmike.com</a></li>
-        <li><a href="https://www.linkedin.com/in/marsmike" class="no-underline hover:underline">LinkedIn</a></li>
-        <li><a href="https://github.com/marsmike" class="no-underline hover:underline">GitHub</a></li>
-        <li><a href="https://x.com/marsmike" class="no-underline hover:underline">X (@MarsMike)</a></li>
-      </ul>
+      <section class="surface-card">
+        <div class="eyebrow mb-4">Signalwege</div>
+        <ul class="space-y-3 list-none pl-0 text-[var(--color-text)]">
+          <li><a href="mailto:mike@marsmike.com" class="button-link no-underline">mike@marsmike.com</a></li>
+          <li><a href="https://www.linkedin.com/in/marsmike" class="button-link no-underline">LinkedIn ↗</a></li>
+          <li><a href="https://github.com/marsmike" class="button-link no-underline">GitHub ↗</a></li>
+          <li><a href="https://x.com/marsmike" class="button-link no-underline">X (@MarsMike) ↗</a></li>
+        </ul>
+      </section>
     </section>
   </article>
 </BaseLayout>

@@ -5,20 +5,50 @@ interface Props {
 const { lang } = Astro.props;
 const rssHref = lang === 'de' ? '/rss.xml' : '/en/rss.xml';
 const sourceLabel = lang === 'de' ? 'Quellcode' : 'Source';
+const motto = lang === 'de' ? 'Nach vorne flüchten.' : 'Flee forward.';
+const tagline = lang === 'de'
+  ? 'Technische Feldberichte über Software Delivery, produktionsreife Agenten und die Reibung dazwischen.'
+  : 'Technical field reports on software delivery, production-grade agents, and the friction in between.';
+const mottoLabel = lang === 'de' ? 'Leitmotto' : 'Transmission Motto';
+const connectLabel = lang === 'de' ? 'Signalwege' : 'Connect';
+const feedLabel = lang === 'de' ? 'Feeds' : 'Feed';
+const archiveLabel = lang === 'de' ? 'Archiv' : 'Archive';
+const dossierLabel = lang === 'de' ? 'Crew-Dossier' : 'Crew Dossier';
+const eot = lang === 'de' ? 'ENDE DER ÜBERTRAGUNG · EOT' : 'END OF TRANSMISSION · EOT';
 ---
 
-<footer class="border-t border-[var(--color-border)] mt-16">
-  <div class="max-w-3xl mx-auto px-5 py-6 text-sm text-[var(--color-muted)] flex flex-wrap gap-x-4 gap-y-2 justify-between">
-    <div>
-      <span>marsmike.com</span>
-      <span aria-hidden="true"> · </span>
-      <a href="https://github.com/marsmike/marsmike.com" class="no-underline hover:underline">{sourceLabel} (MIT)</a>
+<footer class="site-footer-wrap">
+  <section class="site-footer__band scanlines">
+    <div class="site-footer__band-inner">
+      <span class="site-footer__band-label">{mottoLabel}</span>
+      <p class="site-footer__band-copy">{motto}</p>
     </div>
-    <div class="flex gap-x-4">
-      <a href={rssHref} class="no-underline hover:underline">RSS</a>
-      <a href="https://github.com/marsmike" class="no-underline hover:underline">GitHub</a>
-      <a href="https://www.linkedin.com/in/marsmike" class="no-underline hover:underline">LinkedIn</a>
-      <a href="https://x.com/marsmike" class="no-underline hover:underline">X</a>
+  </section>
+  <div class="site-footer">
+    <div class="site-footer__meta">
+      <span class="site-footer__title">marsmike.com</span>
+      <p class="site-footer__note">{tagline}</p>
+      <p class="site-footer__motto">MOTTO ❯ {motto}</p>
     </div>
+    <div class="site-footer__column">
+      <div class="site-footer__label">{connectLabel}</div>
+      <a href="https://github.com/marsmike" class="site-footer__link no-underline">GitHub ↗</a>
+      <a href="https://www.linkedin.com/in/marsmike" class="site-footer__link no-underline">LinkedIn ↗</a>
+      <a href="https://x.com/marsmike" class="site-footer__link no-underline">X ↗</a>
+    </div>
+    <div class="site-footer__column">
+      <div class="site-footer__label">{feedLabel}</div>
+      <a href={rssHref} class="site-footer__link no-underline">RSS ↗</a>
+      <a href={lang === 'de' ? '/about/' : '/en/about/'} class="site-footer__link no-underline">{dossierLabel} ↗</a>
+    </div>
+    <div class="site-footer__column">
+      <div class="site-footer__label">{lang === 'de' ? 'Quelle' : 'Source'}</div>
+      <a href="https://github.com/marsmike/marsmike.com" class="site-footer__link no-underline">{sourceLabel} (MIT) ↗</a>
+      <a href={lang === 'de' ? '/' : '/en/'} class="site-footer__link no-underline">{archiveLabel} ↗</a>
+    </div>
+  </div>
+  <div class="site-footer__legal">
+    <span>© 2026 · MarsMike Station</span>
+    <span>{eot}</span>
   </div>
 </footer>

@@ -10,6 +10,7 @@ interface Props {
   canonicalPath?: string;
   siblingPath?: string;
   ogType?: 'website' | 'article';
+  shell?: 'narrow' | 'wide' | 'post';
 }
 
 const {
@@ -19,12 +20,18 @@ const {
   canonicalPath = Astro.url.pathname,
   siblingPath,
   ogType = 'website',
+  shell = 'narrow',
 } = Astro.props;
 
 const siteUrl = 'https://marsmike.com';
 const canonical = new URL(canonicalPath, siteUrl).toString();
 const sibling = siblingPath ? new URL(siblingPath, siteUrl).toString() : undefined;
 const otherLang = lang === 'de' ? 'en' : 'de';
+const shellClass = shell === 'wide'
+  ? 'site-shell site-shell--wide'
+  : shell === 'post'
+    ? 'site-shell site-shell--post'
+    : 'site-shell site-shell--narrow';
 ---
 
 <!doctype html>
@@ -61,8 +68,8 @@ const otherLang = lang === 'de' ? 'en' : 'de';
     </script>
   </head>
   <body>
-    <Header lang={lang} siblingPath={siblingPath} />
-    <main class="max-w-3xl mx-auto px-5 py-10">
+    <Header lang={lang} siblingPath={siblingPath} currentPath={Astro.url.pathname} />
+    <main class={shellClass}>
       <slot />
     </main>
     <Footer lang={lang} />

@@ -5,25 +5,65 @@ import ThemeToggle from './ThemeToggle.astro';
 interface Props {
   lang: 'de' | 'en';
   siblingPath?: string;
+  currentPath: string;
 }
-const { lang, siblingPath } = Astro.props;
+const { lang, siblingPath, currentPath } = Astro.props;
 const homeHref = lang === 'de' ? '/' : '/en/';
 const postsHref = lang === 'de' ? '/' : '/en/';
 const aboutHref = lang === 'de' ? '/about/' : '/en/about/';
 const aboutLabel = lang === 'de' ? 'Über' : 'About';
 const postsLabel = lang === 'de' ? 'Beiträge' : 'Posts';
+const kicker = lang === 'de' ? 'Feldberichte aus Software Delivery und GenAI' : 'Field reports from software delivery and GenAI';
+const postsActive = currentPath === postsHref || currentPath.startsWith(`${postsHref}posts/`);
+const aboutActive = currentPath.startsWith(aboutHref);
+const uplink = lang === 'de' ? 'UPLINK STABIL' : 'UPLINK STABLE';
+const fieldNode = lang === 'de' ? 'BASIS · REGENSBURG' : 'FIELD NODE · REGENSBURG';
+const toolkitState = lang === 'de' ? 'AGENTIC TOOLKIT · AKTIV' : 'AGENTIC TOOLKIT · IN FLIGHT';
 ---
 
-<header class="border-b border-[var(--color-border)] sticky top-0 backdrop-blur-sm bg-[var(--color-bg)]/85 z-10">
-  <div class="max-w-3xl mx-auto px-5 py-4 flex items-center justify-between">
-    <a href={homeHref} class="font-semibold no-underline text-[var(--color-text)] hover:text-[var(--color-accent)]">
-      marsmike.com
+<header class="site-header">
+  <div class="site-header__telemetry">
+    <div class="site-header__telemetry-inner">
+      <div class="telemetry-group">
+        <span><span class="live-dot live-dot--oxide"></span>LIVE · SOL 1463</span>
+        <span>BUILD v0.42.7</span>
+        <span>{fieldNode}</span>
+      </div>
+      <div class="telemetry-group telemetry-group--end">
+        <span>{uplink}</span>
+        <span>{toolkitState}</span>
+      </div>
+    </div>
+  </div>
+  <div class="site-header__inner">
+    <a href={homeHref} class="brand-lockup no-underline">
+      <span class="brand-lockup__mark" aria-hidden="true"></span>
+      <span class="brand-lockup__text">
+        <span class="brand-lockup__title">marsmike.com</span>
+        <span class="brand-lockup__kicker">{kicker}</span>
+      </span>
     </a>
-    <nav class="flex items-center gap-5 text-sm">
-      <a href={postsHref} class="no-underline text-[var(--color-muted)] hover:text-[var(--color-text)]">{postsLabel}</a>
-      <a href={aboutHref} class="no-underline text-[var(--color-muted)] hover:text-[var(--color-text)]">{aboutLabel}</a>
-      <LangSwitcher currentLang={lang} siblingPath={siblingPath} />
-      <ThemeToggle />
+    <nav class="site-nav" aria-label={lang === 'de' ? 'Hauptnavigation' : 'Main navigation'}>
+      <a
+        href={postsHref}
+        aria-current={postsActive ? 'page' : undefined}
+        class:list={['site-nav__link', postsActive && 'is-active']}
+      >
+        <span class="site-nav__index">01</span>
+        {postsLabel}
+      </a>
+      <a
+        href={aboutHref}
+        aria-current={aboutActive ? 'page' : undefined}
+        class:list={['site-nav__link', aboutActive && 'is-active']}
+      >
+        <span class="site-nav__index">02</span>
+        {aboutLabel}
+      </a>
+      <div class="site-nav__controls">
+        <LangSwitcher currentLang={lang} siblingPath={siblingPath} />
+        <ThemeToggle />
+      </div>
     </nav>
   </div>
 </header>
