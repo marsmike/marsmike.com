@@ -20,6 +20,7 @@ interface Props {
   siblingPath?: string;
   prev?: { href: string; title: string };
   next?: { href: string; title: string };
+  readingMinutes?: number;
 }
 
 const {
@@ -27,6 +28,7 @@ const {
   tags = [],
   linkedinUrl, codeUrl, artifacts = [], siblingPath,
   prev, next,
+  readingMinutes,
 } = Astro.props;
 
 const dateLocale = lang === 'de' ? 'de-DE' : 'en-US';
@@ -39,11 +41,14 @@ const artifactsLabel = lang === 'de' ? 'Artefakte' : 'Artifacts';
 const transmissionLabel = lang === 'de' ? 'Übertragung' : 'Transmission';
 const filedLabel = lang === 'de' ? 'Erfasst' : 'Filed';
 const tagsLabel = lang === 'de' ? 'Tags' : 'Tags';
-const prevLabel = lang === 'de' ? '← Vorheriger' : '← Previous';
-const nextLabel = lang === 'de' ? 'Nächster →' : 'Next →';
+const readingLabel = lang === 'de' ? 'Lesezeit' : 'Reading time';
+const minutesShort = lang === 'de' ? 'Min' : 'min';
+const prevLabel = lang === 'de' ? '← Vorheriger Beitrag' : '← Previous';
+const nextLabel = lang === 'de' ? 'Nächster Beitrag →' : 'Next →';
 const essayLabel = lang === 'de' ? 'Missionslog' : 'Mission Log';
 const filedStripLabel = lang === 'de' ? 'ERFASST' : 'FILED';
 const statusStripLabel = lang === 'de' ? 'STATUS · ÜBERTRAGUNG OFFEN' : 'STATUS · OPEN TRANSMISSION';
+const readingStr = readingMinutes ? `${readingMinutes} ${minutesShort}` : null;
 
 const typeIcon = (t: Artifact['type']) => ({
   video: '▶', pdf: '📄', pptx: '🗂', image: '🖼', audio: '🔊', other: '↗',
@@ -57,6 +62,10 @@ const typeIcon = (t: Artifact['type']) => ({
   siblingPath={siblingPath}
   ogType="article"
   shell="post"
+  articleDate={date}
+  articleTags={tags}
+  articleTitle={title}
+  articleSummary={summary}
 >
   <article class="post-layout">
     <header class="article-hero">
@@ -69,6 +78,12 @@ const typeIcon = (t: Artifact['type']) => ({
         <div class="eyebrow">{essayLabel}</div>
         <div class="article-hero__meta">
           <time datetime={date.toISOString()}>{dateStr}</time>
+          {readingStr && (
+            <>
+              <span aria-hidden="true" class="article-hero__meta-sep">·</span>
+              <span>{readingStr} {readingLabel}</span>
+            </>
+          )}
         </div>
         <h1 class="article-hero__title">{title}</h1>
         <p class="article-hero__summary">{summary}</p>
@@ -113,6 +128,12 @@ const typeIcon = (t: Artifact['type']) => ({
             <span class="article-sidebox__label">{filedLabel}</span>
             <span class="article-sidebox__value">{dateStr}</span>
           </div>
+          {readingStr && (
+            <div class="article-sidebox__row">
+              <span class="article-sidebox__label">{readingLabel}</span>
+              <span class="article-sidebox__value">{readingStr}</span>
+            </div>
+          )}
           {tags.length > 0 && (
             <div class="article-sidebox__row">
               <span class="article-sidebox__label">{tagsLabel}</span>

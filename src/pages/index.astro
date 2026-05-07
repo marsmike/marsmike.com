@@ -9,12 +9,12 @@ const posts = (await getCollection('posts', ({ data }) => data.lang === 'de' && 
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 const [lead, ...rest] = posts;
 
-const tagline = 'Senior Software Engineer @ BSH · 25+ Jahre · Schreibe über KI × Developer-Produktivität.';
+const tagline = 'Senior Software Engineer @ BSH · 25+ Jahre · Ich schreibe über KI × Developer-Produktivität.';
 const focusAreas = ['Agentic Engineering', 'Developer Productivity', 'Knowledge Systems', 'Software Delivery'];
 const radarItems = [
-  { label: 'agentic-toolkit', href: '#post-agentic-toolkit-open-sourced', title: 'Mein Agentic Toolkit ist jetzt open source', top: '14%', left: '69%' },
-  { label: 'claude-code', href: '#post-agentic-toolkit-open-sourced', title: 'Mein Agentic Toolkit ist jetzt open source', top: '29%', left: '21%' },
-  { label: 'oss', href: '#post-agentic-toolkit-open-sourced', title: 'Mein Agentic Toolkit ist jetzt open source', top: '49%', left: '79%' },
+  { label: 'agentic-toolkit', href: '#post-agentic-toolkit-open-sourced', title: 'Mein Agentic Toolkit ist jetzt Open Source', top: '14%', left: '69%' },
+  { label: 'claude-code', href: '#post-agentic-toolkit-open-sourced', title: 'Mein Agentic Toolkit ist jetzt Open Source', top: '29%', left: '21%' },
+  { label: 'oss', href: '#post-agentic-toolkit-open-sourced', title: 'Mein Agentic Toolkit ist jetzt Open Source', top: '49%', left: '79%' },
   { label: 'feinschliff', href: '#post-feinschliff-launch', title: 'Feinschliff: ein typisiertes Komponentensystem für LLM-generierte Decks', top: '78%', left: '61%' },
   { label: 'powerpoint', href: '#post-feinschliff-launch', title: 'Feinschliff: ein typisiertes Komponentensystem für LLM-generierte Decks', top: '69%', left: '18%' },
   { label: 'design-systems', href: '#post-feinschliff-launch', title: 'Feinschliff: ein typisiertes Komponentensystem für LLM-generierte Decks', top: '58%', left: '47%' },
@@ -46,7 +46,7 @@ const archiveCountLabel = `${posts.length} EINTRÄGE`;
       </h1>
       <p class="text-lg text-[var(--color-muted)] leading-relaxed max-w-[48rem]">
         {tagline} Hier landen Feldberichte über Delivery-Systeme, die auch dann funktionieren,
-        wenn die Luft dünn wird: Konzernrealität, Tooling-Staub, CI/CD-Reibung
+        wenn die Luft dünn wird: Konzernrealität, träges Tooling, CI/CD-Reibung
         und produktionsreife Agenten statt Demo-Halluzinationen.
       </p>
       <div class="tag-cluster mt-6">
@@ -79,7 +79,7 @@ const archiveCountLabel = `${posts.length} EINTRÄGE`;
         </div>
         <div class="status-console__row">
           <span class="status-console__label">Oberfläche</span>
-          <span class="status-console__value">Regensburg · Konzernschwerkraft</span>
+          <span class="status-console__value">Regensburg · Konzernumfeld</span>
         </div>
         <div class="status-console__row">
           <span class="status-console__label">Aktuell</span>
@@ -120,7 +120,7 @@ const archiveCountLabel = `${posts.length} EINTRÄGE`;
           </div>
         </div>
         <div class="archive-console__actions">
-          <a href="/about/" class="button-link no-underline">Mehr Kontext über MarsMike ↗</a>
+          <a href="/about/" class="button-link no-underline">Mehr über MarsMike ↗</a>
         </div>
       </aside>
     </div>

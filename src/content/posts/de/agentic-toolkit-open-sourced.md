@@ -1,5 +1,5 @@
 ---
-title: "Mein Agentic Toolkit ist jetzt open source"
+title: "Mein Agentic Toolkit ist jetzt Open Source"
 summary: "github.com/marsmike/agentic-toolkit ist seit heute öffentlich. Plugins erscheinen einzeln, nicht alle auf einmal – in der Reihenfolge, in der ich sie einem Kollegen geben würde."
 date: 2026-04-29
 lang: de
