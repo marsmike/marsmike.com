@@ -25,6 +25,9 @@ const sibling = enPosts.find(p => p.slug.replace(/^en\//, '') === post.data.tran
 const siblingPath = sibling ? `/en/posts/${sibling.slug.replace(/^en\//, '')}/` : undefined;
 
 const slugBare = (s: string) => s.replace(/^de\//, '');
+
+const wordCount = post.body.split(/\s+/).filter(Boolean).length;
+const readingMinutes = Math.max(1, Math.round(wordCount / 200));
 ---
 
 <PostLayout
@@ -39,6 +42,7 @@ const slugBare = (s: string) => s.replace(/^de\//, '');
   siblingPath={siblingPath}
   prev={prev ? { href: `/posts/${slugBare(prev.slug)}/`, title: prev.data.title } : undefined}
   next={next ? { href: `/posts/${slugBare(next.slug)}/`, title: next.data.title } : undefined}
+  readingMinutes={readingMinutes}
 >
   <Content />
 </PostLayout>

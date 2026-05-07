@@ -457,7 +457,7 @@
     margin-right: 0.45rem;
     background: var(--m-tungsten);
     box-shadow: 0 0 6px var(--m-tungsten);
-    animation: pulse-dot 1.6s ease infinite;
+    animation: pulse-dot 2.6s ease-in-out infinite;
   }
 
   .live-dot--ok {
@@ -1212,6 +1212,11 @@
     color: var(--color-muted);
   }
 
+  .article-hero__meta-sep {
+    margin: 0 0.55rem;
+    opacity: 0.6;
+  }
+
   .article-hero__title {
     margin: 0;
     font-family: var(--font-display);
@@ -1238,8 +1243,72 @@
     margin-top: 1.2rem;
   }
 
+  .skip-link {
+    position: fixed;
+    top: 0.5rem;
+    left: 0.5rem;
+    z-index: 100;
+    padding: 0.6rem 0.9rem;
+    background: var(--color-accent);
+    color: var(--m-light);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    border: 1px solid var(--color-accent-strong);
+    transform: translateY(-150%);
+    transition: transform 140ms ease;
+  }
+
+  .skip-link:focus,
+  .skip-link:focus-visible {
+    transform: translateY(0);
+    color: var(--m-light);
+    outline-offset: 4px;
+  }
+
   .prose-body {
     color: var(--color-text);
+  }
+
+  .prose-body :not(pre) > a {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-decoration-color: color-mix(in srgb, var(--color-accent) 50%, transparent);
+    text-underline-offset: 0.2em;
+  }
+
+  .prose-body :not(pre) > a:hover {
+    text-decoration-color: var(--color-accent);
+  }
+
+  .prose-body h2,
+  .prose-body h3 {
+    scroll-margin-top: 7rem;
+  }
+
+  .heading-anchor {
+    margin-left: 0.4em;
+    color: var(--color-muted);
+    font-weight: 400;
+    font-family: var(--font-mono);
+    font-size: 0.7em;
+    text-decoration: none;
+    opacity: 0;
+    transition: opacity 120ms ease, color 120ms ease;
+  }
+
+  .prose-body h2:hover .heading-anchor,
+  .prose-body h3:hover .heading-anchor,
+  .heading-anchor:focus-visible {
+    opacity: 1;
+    color: var(--color-accent);
+  }
+
+  @media (max-width: 640px) {
+    .heading-anchor {
+      opacity: 0.45;
+    }
   }
 
   .prose-body > * + * {
@@ -1498,8 +1567,8 @@
 
   @keyframes pulse-dot {
     0%,
-    100% { opacity: 1; }
-    50% { opacity: 0.35; }
+    100% { opacity: 0.85; }
+    50% { opacity: 0.45; }
   }
 
   @keyframes radar-sweep {
