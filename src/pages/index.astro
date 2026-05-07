@@ -9,7 +9,7 @@ const posts = (await getCollection('posts', ({ data }) => data.lang === 'de' && 
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 const [lead, ...rest] = posts;
 
-const tagline = 'Senior Software Engineer @ BSH · 25+ Jahre · Schreibe über KI × Developer-Produktivität.';
+const tagline = 'Senior Software Engineer @ BSH · 25+ Jahre · Schreibt über KI × Developer-Produktivität.';
 const focusAreas = ['Agentic Engineering', 'Developer Productivity', 'Knowledge Systems', 'Software Delivery'];
 const radarItems = [
   { label: 'agentic-toolkit', href: '#post-agentic-toolkit-open-sourced', title: 'Mein Agentic Toolkit ist jetzt open source', top: '14%', left: '69%' },
@@ -120,7 +120,7 @@ const archiveCountLabel = `${posts.length} EINTRÄGE`;
           </div>
         </div>
         <div class="archive-console__actions">
-          <a href="/about/" class="button-link no-underline">Mehr Kontext über MarsMike ↗</a>
+          <a href="/about/" class="button-link no-underline">Mehr über MarsMike ↗</a>
         </div>
       </aside>
     </div>
