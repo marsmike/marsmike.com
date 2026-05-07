@@ -116,7 +116,7 @@ KNOWN_DE_ANGLICISMS: set[str] = {
     "Hairlines", "Hairline",
     "Components-Showcase", "Hero-Element",
     "OOXML", "OOXML-",
-    "Spec", "Spec-Format",
+    "Spec", "Spec-Format", "Google-Spec-Format",
     "README", "Drop-in",
     "px-Karten", "px-Ecken",
     # Real German words LT's de-DE dictionary doesn't recognise.
